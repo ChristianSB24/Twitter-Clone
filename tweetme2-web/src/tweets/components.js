@@ -1,26 +1,30 @@
 import React, {useEffect, useState} from 'react'
   
 
-import {createTweet, loadTweets} from '../lookup'
+import {apiTweetCreate, apiTweetList} from './lookup'
 
 export function TweetsComponent(props) {
     const textAreaRef = React.createRef()
     const [newTweets, setNewTweets] = useState([])
-    const handleSubmit = (event) => {
-        event.preventDefault()
-        const newVal = textAreaRef.current.value
-        let tempNewTweets = [...newTweets]
-        // change this to a server side call
-        createTweet(newVal, (response, status)=>{
-          if (status === 201){
-            tempNewTweets.unshift(response)
-          } else {
-            console.log(response)
-            alert("An error occured please try again.")
-          }
-        })
+    
+    const handleBackendUpdate = (response, status) => {
+      // backend api response handler
+      let tempNewTweets = [...newTweets]
+      if (status === 201){
+        tempNewTweets.unshift(response)
         setNewTweets(tempNewTweets)
-        textAreaRef.current.value = ''
+      } else {
+        console.log(response)
+        alert("An error occured please try again.")
+      }
+    }
+
+    const handleSubmit = (event) => {
+      event.preventDefault()
+      const newVal = textAreaRef.current.value
+      // backend api request
+      apiTweetCreate(newVal, handleBackendUpdate)
+      textAreaRef.current.value = ''
     }
     return <div className={props.className}>
                 <div className='col-12 mb-3'>
@@ -49,7 +53,7 @@ export function TweetsList(props) {
     },    [props.newTweets, tweets, tweetsInit])
     useEffect(() => {
       if (tweetsDidSet === false){
-        const myCallback = (response, status) => {
+        const handleTweetListLookup = (response, status) => {
           if (status === 200){
             setTweetsInit(response)
             setTweetsDidSet(true)
@@ -57,7 +61,7 @@ export function TweetsList(props) {
             alert("There was an error")
           }
         }
-        loadTweets(myCallback)
+        apiTweetList(handleTweetListLookup)
       }
     }, [tweetsInit, tweetsDidSet, setTweetsDidSet])
     return tweets.map((item, index)=>{
