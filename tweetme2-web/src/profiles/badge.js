@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react'
-import numeral from 'numeral'
 
 import {UserDisplay, UserPicture} from './components'
 import {apiProfileDetail, apiProfileFollowToggle} from './lookup'
