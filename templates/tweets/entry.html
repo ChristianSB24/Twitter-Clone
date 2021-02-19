@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="jumbotron">
+  	<h1 class="display-3">Twitter Clone</h1>
+
+  	<p class="lead">Welcome to my twitter clone. Here you are able to register an account, login, edit your profile, tweet, retweet,
+		  and follow your friends. To continue click on a button below. 
+	</p>
+	{% if request.user.is_authenticated %}
+	<a href="/logout" class="btn btn-primary">Logout</a>
+
+	{% else %}
+
+	<a href="/register" class="btn btn-primary"> Register</a><br>
+	<h5>Or</h5>
+	<a href="/login" class="btn btn-primary">Login</a>
+
+	{% endif %}
+
+
+  </div>
+{% endblock content %}

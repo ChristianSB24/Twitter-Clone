@@ -16,3 +16,7 @@ def tweets_list_view(request, *args, **kwargs):
 def tweets_detail_view(request, tweet_id, *args, **kwargs):
     return render(request, "tweets/detail.html", context={"tweet_id": tweet_id})
 
+def index(request):
+	"""The home page for Learning Log."""
+	return render(request, 'tweets/entry.html')
+

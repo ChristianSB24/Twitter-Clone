@@ -28,10 +28,12 @@ from tweets.views import (
     home_view,
     tweets_list_view,
     tweets_detail_view,
+    index,
 )
 
 urlpatterns = [
-    path('', home_view),
+    path('', index),
+    path('home/', home_view),
     path('admin/', admin.site.urls),
     path('global/', tweets_list_view),
     path('login/', login_view),
