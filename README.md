@@ -1,5 +1,4 @@
 # Twitter Clone 
-In this project I created a twitter clone using Django to deliver the functionality and React and Bootstrap for a sleek user interface. 
-React was rendered via Django. 
+This full-stack Twitter Clone application features a Django RESTful API that communicates with a React.js frontend. Additionally, Bootstrap was utilized to create a responsive mobile-first and sleeker user interface.
 
-Additionally, this project was deployed onto Heroku for easy-access for anyone that wants to test it. It can be found here https://infinite-escarpment-77268.herokuapp.com/ 
+This project was deployed onto Heroku for easy-access. It can be found here https://infinite-escarpment-77268.herokuapp.com/ 

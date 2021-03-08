@@ -1,23 +1,37 @@
+
 {% extends 'base.html' %}
 
 {% block content %}
-  <div class="jumbotron">
-  	<h1 class="display-3">Twitter Clone</h1>
 
-  	<p class="lead">Welcome to my twitter clone. Here you are able to register an account, login, edit your profile, tweet, retweet,
-		  and follow your friends. To continue click on a button below. 
-	</p>
-	{% if request.user.is_authenticated %}
-	<a href="/logout" class="btn btn-primary">Logout</a>
+    
+<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+	<main class="px-3">
+		<div class="jumbotron text-white">
+			<h1 class="display-3 text-center">Twitter Clone</h1>
 
-	{% else %}
+			<p class="lead">Welcome to Twitter Clone. Here you are able to register an account, login, edit your profile, tweet, retweet,
+				and follow your friends. 
+			</p>
+			{% if request.user.is_authenticated %}
+			<a href="/logout" class="btn btn-primary">Logout</a>
 
-	<a href="/register" class="btn btn-primary"> Register</a><br>
-	<h5>Or</h5>
-	<a href="/login" class="btn btn-primary">Login</a>
+			{% else %}
 
-	{% endif %}
+			<a href="/register" class="btn btn-primary"> Register</a>
+			<br>
+			<br>
+			<a href="/login" class="btn btn-primary">Login</a>
+
+			{% endif %}
+			<br>
 
 
-  </div>
+			<img src="/static/media/clipart_bird.png" class="resize" style="float: right" alt="Twitter bird's little brother.">
+
+
+
+		</div>
+	</main>
+</div>
+
 {% endblock content %}

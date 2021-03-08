@@ -1,9 +1,8 @@
-import React, {useEffect, useState} from 'react'
-  
+import React, {useEffect, useState}  from 'react'
+
 import {apiTweetList} from './lookup'
 
 import {Tweet} from './detail'
-
 
 export function TweetsList(props) {
     const [tweetsInit, setTweetsInit] = useState([])
@@ -11,11 +10,11 @@ export function TweetsList(props) {
     const [nextUrl, setNextUrl] = useState(null)
     const [tweetsDidSet, setTweetsDidSet] = useState(false)
     useEffect(()=>{
-        const final = [...props.newTweets].concat(tweetsInit)
-        if (final.length !== tweets.length) {
-          setTweets(final)
-        }
-    },    [props.newTweets, tweets, tweetsInit])
+      const final = [...props.newTweets].concat(tweetsInit)
+      if (final.length !== tweets.length) {
+        setTweets(final)
+      }
+    }, [props.newTweets, tweets, tweetsInit])
 
     useEffect(() => {
       if (tweetsDidSet === false){
@@ -32,6 +31,7 @@ export function TweetsList(props) {
       }
     }, [tweetsInit, tweetsDidSet, setTweetsDidSet, props.username])
 
+
     const handleDidRetweet = (newTweet) => {
       const updateTweetsInit = [...tweetsInit]
       updateTweetsInit.unshift(newTweet)
@@ -40,7 +40,6 @@ export function TweetsList(props) {
       updateFinalTweets.unshift(tweets)
       setTweets(updateFinalTweets)
     }
-
     const handleLoadNext = (event) => {
       event.preventDefault()
       if (nextUrl !== null) {
@@ -57,13 +56,14 @@ export function TweetsList(props) {
         apiTweetList(props.username, handleLoadNextResponse, nextUrl)
       }
     }
+
     return <React.Fragment>{tweets.map((item, index)=>{
-      return <Tweet 
+      return <Tweet  
         tweet={item} 
         didRetweet={handleDidRetweet}
         className='my-5 py-5 border bg-white text-dark' 
-        key={`${index}-{item.id}`}/>
+        key={`${index}-{item.id}`} />
     })}
-    { nextUrl !== null && <button onClick={handleLoadNext} className='btn btn-outline-primary'>Load next</button>}
+    {nextUrl !== null && <button onClick={handleLoadNext} className='btn btn-outline-primary'>Load next</button>}
     </React.Fragment>
   }

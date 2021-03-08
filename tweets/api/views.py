@@ -7,7 +7,7 @@ from django.utils.http import is_safe_url
 from rest_framework.authentication import SessionAuthentication
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
 from rest_framework.pagination import PageNumberPagination
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
 from ..forms import TweetForm
 from ..models import Tweet
@@ -19,9 +19,8 @@ from ..serializers import (
 
 ALLOWED_HOSTS = settings.ALLOWED_HOSTS
 
-@api_view(['POST']) # http method the client == POST
-# @authentication_classes([SessionAuthentication, MyCustomAuth])
-@permission_classes([IsAuthenticated]) # REST API course
+@api_view(['POST']) 
+@permission_classes([IsAuthenticated])
 def tweet_create_view(request, *args, **kwargs):
     serializer = TweetCreateSerializer(data=request.data)
     if serializer.is_valid(raise_exception=True):
@@ -96,7 +95,7 @@ def get_paginated_queryset_response(qs, request):
     return paginator.get_paginated_response(serializer.data) # Response(serializer.data, status=200)
 
 @api_view(['GET'])
-@permission_classes([IsAuthenticated])
+@permission_classes([AllowAny])
 def tweet_feed_view(request, *args, **kwargs):
     user = request.user
     qs = Tweet.objects.feed(user)

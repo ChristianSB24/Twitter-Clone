@@ -57,7 +57,7 @@ export function FeedList(props) {
       return <Tweet  
         tweet={item} 
         didRetweet={handleDidRetweet}
-        className='my-5 py-5 border bg-white text-dark' 
+        className='my-5 py-5 rounded-lg border border-info bg-white text-dark' 
         key={`${index}-{item.id}`} />
     })}
     {nextUrl !== null && <button onClick={handleLoadNext} className='btn btn-outline-primary'>Load next</button>}
