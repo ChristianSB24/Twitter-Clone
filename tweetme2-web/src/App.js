@@ -4,8 +4,8 @@ import './App.css';
 
 
 import { PostsList } from './tweets/features/postsList'
+import { AddPostForm } from './tweets/features/AddPostForm'
 
-import {TweetsComponent} from './tweets'
 
 
 
@@ -19,7 +19,7 @@ function App() {
         </p>
         <div>
           <React.Fragment>
-            <TweetsComponent />
+            <AddPostForm />
             <PostsList />
           </React.Fragment>
         </div>
