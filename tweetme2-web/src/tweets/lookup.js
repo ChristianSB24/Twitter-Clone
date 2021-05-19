@@ -16,7 +16,7 @@ export function apiTweetDetail(tweetId, callback) {
 export function apiTweetFeed(callback, nextUrl) {
     let endpoint =  "/tweets/feed/"
     if (nextUrl !== null && nextUrl !== undefined) {
-        endpoint = nextUrl.replace("https://infinite-escarpment-77268.herokuapp.com/api", "")
+        endpoint = nextUrl.replace("http://localhost:8000/api", "")
     }
     backendLookup("GET", endpoint, callback)
 }
@@ -28,7 +28,7 @@ export function apiTweetList(username, callback, nextUrl) {
         endpoint =  `/tweets/?username=${username}`
     }
     if (nextUrl !== null && nextUrl !== undefined) {
-        endpoint = nextUrl.replace("https://infinite-escarpment-77268.herokuapp.com/api", "")
+        endpoint = nextUrl.replace("http://localhost:8000/api", "")
     }
     backendLookup("GET", endpoint, callback)
 }

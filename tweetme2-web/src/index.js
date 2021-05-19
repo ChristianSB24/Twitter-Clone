@@ -3,13 +3,19 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import {ProfileBadgeComponent} from './profiles'
+import store from './app/store';
+import { Provider } from 'react-redux';
 import {FeedComponent, TweetsComponent, TweetDetailComponent} from './tweets'
 import reportWebVitals from './reportWebVitals';
 //import * as serviceWorker from './serviceWorker';
 
 const appEl = document.getElementById('root')
 if (appEl) {
-  ReactDOM.render(<App />, appEl);
+  ReactDOM.render(
+    <Provider store={store}> 
+      <App />
+    </Provider>,
+     appEl);
 }
 const e = React.createElement
 const tweetsEl = document.getElementById("tweetme-2")
