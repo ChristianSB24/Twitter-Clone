@@ -1,38 +1,34 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from 'react-router-dom'
 
 import { PostsList } from './tweets/features/postsList'
 import { AddPostForm } from './tweets/features/AddPostForm'
-
-
-
+import { SinglePostPage } from './tweets/features/SinglePostPage'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <div>
-          <React.Fragment>
-            <AddPostForm />
-            <PostsList />
-          </React.Fragment>
-        </div>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <Switch>
+        <Route
+            exact
+            path="/"
+            render={() => (
+              <React.Fragment>
+                <AddPostForm />
+                <PostsList />
+              </React.Fragment>
+            )}
+            />
+            <Route exact path="/posts/:postId" component={SinglePostPage} />
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
