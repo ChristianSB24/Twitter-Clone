@@ -6,9 +6,9 @@ import {
   Route,
 } from 'react-router-dom'
 
-import { PostsList } from './tweets/features/postsList'
-import { AddPostForm } from './tweets/features/AddPostForm'
-import { SinglePostPage } from './tweets/features/SinglePostPage'
+import { PostsList } from './tweets/features/posts/postsList'
+import { AddPostForm } from './tweets/features/posts/AddPostForm'
+import { SinglePostPage } from './tweets/features/posts/SinglePostPage'
 
 function App() {
   return (
