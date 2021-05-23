@@ -8,6 +8,10 @@ import { Provider } from 'react-redux';
 import {FeedComponent, TweetsComponent, TweetDetailComponent} from './tweets'
 import reportWebVitals from './reportWebVitals';
 //import * as serviceWorker from './serviceWorker';
+import './api/server'
+import { fetchUsers } from './tweets/features/users/usersSlice'
+
+store.dispatch(fetchUsers())
 
 const appEl = document.getElementById('root')
 if (appEl) {
@@ -17,34 +21,34 @@ if (appEl) {
     </Provider>,
      appEl);
 }
-const e = React.createElement
-const tweetsEl = document.getElementById("tweetme-2")
-if (tweetsEl) {
-    ReactDOM.render(
-      e(TweetsComponent, tweetsEl.dataset), tweetsEl);
-}
+// const e = React.createElement
+// const tweetsEl = document.getElementById("tweetme-2")
+// if (tweetsEl) {
+//     ReactDOM.render(
+//       e(TweetsComponent, tweetsEl.dataset), tweetsEl);
+// }
 
-const tweetFeedEl = document.getElementById("tweetme-2-feed")
-if (tweetFeedEl) {
-  ReactDOM.render(
-    e(FeedComponent, tweetFeedEl.dataset), tweetFeedEl);
-}
+// const tweetFeedEl = document.getElementById("tweetme-2-feed")
+// if (tweetFeedEl) {
+//   ReactDOM.render(
+//     e(FeedComponent, tweetFeedEl.dataset), tweetFeedEl);
+// }
 
-const tweetDetailElements = document.querySelectorAll(".tweetme-2-detail")
+// const tweetDetailElements = document.querySelectorAll(".tweetme-2-detail")
 
-tweetDetailElements.forEach(container=> {
-  ReactDOM.render(
-    e(TweetDetailComponent, container.dataset),
-    container);
-})
+// tweetDetailElements.forEach(container=> {
+//   ReactDOM.render(
+//     e(TweetDetailComponent, container.dataset),
+//     container);
+// })
 
-const userProfileBadgeElements = document.querySelectorAll(".tweetme-2-profile-badge")
+// const userProfileBadgeElements = document.querySelectorAll(".tweetme-2-profile-badge")
 
-userProfileBadgeElements.forEach(container=> {
-  ReactDOM.render(
-    e(ProfileBadgeComponent, container.dataset),
-    container);
-})
+// userProfileBadgeElements.forEach(container=> {
+//   ReactDOM.render(
+//     e(ProfileBadgeComponent, container.dataset),
+//     container);
+// })
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
