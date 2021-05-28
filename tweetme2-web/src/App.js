@@ -6,7 +6,7 @@ import {
   Route,
 } from 'react-router-dom'
 
-import { PostsList } from './tweets/features/posts/postsList'
+import { PostsList } from './tweets/features/posts/postsList2'
 import { AddPostForm } from './tweets/features/posts/AddPostForm'
 import { SinglePostPage } from './tweets/features/posts/SinglePostPage'
 
