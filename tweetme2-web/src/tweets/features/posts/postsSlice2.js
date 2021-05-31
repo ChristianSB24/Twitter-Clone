@@ -4,10 +4,12 @@ import { client } from '../../../api/client'
 import { apiTweetList, apiTweetFeed } from '../../lookup'
 
 
-export const fetchPosts = createAsyncThunk('posts/fetchPosts', async (username, thunkAPI) => {
-    const response = await fetch('http://localhost:8000/api/tweets/')
+export const fetchPosts = createAsyncThunk('posts/fetchPosts', async initialPost => {
+    console.log(initialPost.callback)
+    const response = apiTweetList(initialPost.username, initialPost.callback)
+    console.log(response)
     const data = await response.json();
-    return data.results;
+    return data;
 });
 
 const initialState = {

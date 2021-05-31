@@ -11,20 +11,22 @@ export const PostsList = () => {
   console.log(posts)
 
   const postStatus = useSelector(state => state.posts.status)
-  const test = []
 
   useEffect(() => {
-    // const myCallback = (response, status) => {
-    // if (status === 'idle'){
-    //     } else {
-    //     alert("There was an error")
-    //     }
-    // }
+    const myCallback = (response, status) => {
+    if (status === 200){
+        posts = response.results
+        console.log(response.results)
+
+        } else {
+        alert("There was an error")
+        }
+    }
     if (postStatus === 'idle') {
-      dispatch(fetchPosts('christian'))
+      dispatch(fetchPosts({username: 'christian', callback: myCallback}))
     }
   }, [postStatus, dispatch])
-  console.log(posts[0])
+  console.log(posts)
 
   const orderedPosts = posts.slice().sort((a, b) => b.date.localeCompare(a.date))
 
