@@ -8,25 +8,12 @@ import { selectAllPosts, fetchPosts } from './postsSlice2'
 export const PostsList = () => {
   const dispatch = useDispatch()
   const posts = useSelector(selectAllPosts)
-  console.log(posts)
-
   const postStatus = useSelector(state => state.posts.status)
-
   useEffect(() => {
-    const myCallback = (response, status) => {
-    if (status === 200){
-        posts = response.results
-        console.log(response.results)
-
-        } else {
-        alert("There was an error")
-        }
-    }
     if (postStatus === 'idle') {
-      dispatch(fetchPosts({username: 'christian', callback: myCallback}))
+      dispatch(fetchPosts({username: 'christian'}))
     }
   }, [postStatus, dispatch])
-  console.log(posts)
 
   const orderedPosts = posts.slice().sort((a, b) => b.date.localeCompare(a.date))
 

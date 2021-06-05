@@ -5,8 +5,14 @@ import { apiTweetList, apiTweetFeed } from '../../lookup'
 
 
 export const fetchPosts = createAsyncThunk('posts/fetchPosts', async initialPost => {
-    console.log(initialPost.callback)
-    const response = apiTweetList(initialPost.username, initialPost.callback)
+  const myCallback = (response, status) => {
+    if (status === 'idle'){
+        console.log(response.results)
+        } else {
+        alert("There was an error")
+        }
+    }
+    const response = await apiTweetList(initialPost.username, myCallback)
     console.log(response)
     const data = await response.json();
     return data;
