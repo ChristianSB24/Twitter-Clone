@@ -23,6 +23,7 @@ export function apiTweetFeed(callback, nextUrl) {
 
 
 export function apiTweetList(username, callback, nextUrl) {
+    console.log(username)
     let endpoint =  "/tweets/"
     if (username){
         endpoint =  `/tweets/?username=${username}`

@@ -9,23 +9,26 @@ export const PostsList = () => {
   const dispatch = useDispatch()
   const posts = useSelector(selectAllPosts)
   const postStatus = useSelector(state => state.posts.status)
+
   useEffect(() => {
     if (postStatus === 'idle') {
-      dispatch(fetchPosts({username: 'christian'}))
+      dispatch(fetchPosts())
     }
   }, [postStatus, dispatch])
+  console.log(posts)
 
-  const orderedPosts = posts.slice().sort((a, b) => b.date.localeCompare(a.date))
+  // const orderedPosts = posts.slice().sort((a, b) => b.date.localeCompare(a.date))
 
-  const renderedPosts = orderedPosts.map(post => {
+  const renderedPosts = posts.map(post => {
+    console.log(post.user.id)
     return (
       <article className="post-excerpt" key={post.id}>
-        <h3>{post.title}</h3>
+        <h3 className="post-content" >{post.content}</h3>
         <div>
-          <PostAuthor userId={post.user} />
+          <PostAuthor userId={post.user.id} />
           <TimeAgo timestamp={post.date} />
         </div>
-        <p className="post-content">{post.content.substring(0, 100)}</p>
+        <p className="post-content">{post.content}</p>
         <Link to={`/posts/${post.id}`} className="button muted-button">
           View Post
         </Link>
