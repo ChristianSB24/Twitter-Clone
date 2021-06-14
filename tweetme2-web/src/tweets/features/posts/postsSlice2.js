@@ -93,3 +93,5 @@ export const selectAllPosts = state => state.posts.posts
 
 export const selectPostById = (state, postId) =>
   state.posts.posts.find(post => post.id === postId)
+
+  """ Testing Git contributions """
