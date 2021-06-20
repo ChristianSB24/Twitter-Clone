@@ -12,6 +12,7 @@ export function TweetCreate(props){
       alert("An error occured please try again.")
     }
   }
+  console.log('here')
 
   const handleSubmit = (event) => {
     event.preventDefault()
