@@ -1,13 +1,28 @@
-import { sub } from 'date-fns'
 import { createSlice, nanoid, createAsyncThunk } from '@reduxjs/toolkit'
-import { client } from '../../../api/client'
 import {apiTweetList} from '../../lookup'
 
 
-export const fetchPosts = createAsyncThunk('posts/fetchPosts', async () => {
-  const response = await client.get('/fakeApi/posts')
-  return response.posts
-})
+export const fetchPosts = createAsyncThunk('posts/fetchPosts', async user => {
+    const initialUser = { user }
+    console.log(initialUser.user)
+    let response
+    if (initialUser.user != undefined){
+      console.log('here')
+      response = await fetch(
+        `http://localhost:8000/api/tweets/?username=${initialUser.user}`
+      )
+    } 
+    else {
+      console.log('there')
+      response = await fetch(
+        `http://localhost:8000/api/tweets`
+      );
+    }
+    console.log(response)
+    const data = await response.json();
+    console.log(data.results)
+    return data.results
+  })
 
 const initialState = {
   posts: [],
@@ -15,16 +30,16 @@ const initialState = {
   error: null
 }
 
-export const addNewPost = createAsyncThunk(
-  'posts/addNewPost',
-  // The payload creator receives the partial `{title, content, user}` object
-  async initialPost => {
-    // We send the initial data to the fake API server
-    const response = await client.post('/fakeApi/posts', { post: initialPost })
-    // The response includes the complete post object, including unique ID
-    return response.post
-  }
-)
+// export const addNewPost = createAsyncThunk(
+//   'posts/addNewPost',
+//   // The payload creator receives the partial `{title, content, user}` object
+//   async initialPost => {
+//     // We send the initial data to the fake API server
+//     const response = await client.post('/fakeApi/posts', { post: initialPost })
+//     // The response includes the complete post object, including unique ID
+//     return response.post
+//   }
+// )
 
 const postsSlice = createSlice({
   name: 'posts',
@@ -75,10 +90,10 @@ const postsSlice = createSlice({
         state.status = 'failed'
         state.error = action.error.message
       },
-      [addNewPost.fulfilled]: (state, action) => {
-        // We can directly add the new post object to our posts array
-        state.posts.push(action.payload)
-      }
+    //   [addNewPost.fulfilled]: (state, action) => {
+    //     // We can directly add the new post object to our posts array
+    //     state.posts.push(action.payload)
+    //   }
     },
 
 })

@@ -11,15 +11,16 @@ import reportWebVitals from './reportWebVitals';
 
 const appEl = document.getElementById('root')
 if (appEl) {
-  ReactDOM.render(<App />, appEl);
+  ReactDOM.render(<Provider store={store}>
+                    <App />
+                  </Provider>, appEl);
 }
+
 const e = React.createElement
 const tweetsEl = document.getElementById("tweetme-2")
 if (tweetsEl) {
     ReactDOM.render(
-      <Provider store={store}>
-        e(TweetsComponent, tweetsEl.dataset), 
-      </Provider>,
+        e(TweetsComponent, tweetsEl.dataset),
       tweetsEl);
 }
 
